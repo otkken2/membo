@@ -1,0 +1,39 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="main-container-contents-login">
+    <h2>新規登録</h2>
+    <form action="{% url 'app:signup' %}" class="form-signin" method="post">{% csrf_token %}
+        {% if form.errors %}
+            <p>ユーザー名かパスワードが間違っています</p>
+        {% endif %}
+        <label>ユーザー名</label><br>
+        {{ form.username }}
+        {{ form.username.errors }}
+        <br>
+        <label>パスワード</label>
+        <br>
+        {{ form.password1 }}
+        {{ form.password1.errors }}
+        <br>
+        <label>パスワード(確認)</label>
+        <br>
+        {{ form.password2 }}
+        {{ form.password2.errors }}
+        
+        <a href="{% url 'social:begin' 'twitter' %}">
+            <div class="twitter-api">
+                <span>twitterで新規登録</span>
+            </div>
+        </a>
+        <div class="facebook-api">
+            <span>facebookで新規登録</span>
+        </div>
+        <div class="google-api">
+            <span>Googleで新規登録</span>
+        </div>
+        <input type="submit" value="新規登録する">
+
+    </form>
+</div>
+{% endblock %}

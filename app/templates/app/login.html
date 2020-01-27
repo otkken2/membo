@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div id="main-container-contents-login">
+    <h2>ログイン</h2>
+    <form class="form-signin" method="post">{% csrf_token %}
+        {% if form.errors %}
+            <p>ユーザー名かパスワードが間違っています</p>
+        {% endif %}
+        <label>ユーザー名</label><br>
+
+        <input name="username">
+        <br>
+        <label>パスワード</label>
+        <br>
+        <input type="password" name="password">
+        <a href="{% url 'social:begin' 'twitter' %}">
+            <div class="twitter-api">
+                twitterでログイン
+            </div>
+        </a>
+        <a href="">
+            <div class="facebook-api">
+                <span>facebookでログイン</span>
+            </div>
+        </a>
+        <a href="">
+            <div class="google-api">
+                <span>Googleでログイン</span>
+            </div>
+        </a>
+        <input type="submit" value="ログイン">
+
+    </form>
+</div>
+{% endblock %}
