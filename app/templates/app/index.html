@@ -2,29 +2,42 @@
 {% load static %}
 
 {% block content %}
+{% for postcontent in postcontents %}
 <div class="posts">
     <section class="post">
         <img class="play-button" src="" alt="再生ボタン" srcset="">
         <div class="post-body"><!-- play-button以外の部分を纏めてflexbox制御する為のdivです -->
             <div class="post-header">
                 <div class="post-title">    
-                    <a href="">
+                    <a href="{% url 'app:bosyuu_detail' %}"> <!--  bosyuu_detailの中身は後に正しい内容に変更する。その際、記事の主キーを渡すようにこのhrefも変更する。-->
                         <h3>
-                            当方ボーカル希望！ほか全パート募集！
+                            {{ postcontent.title }}
                         </h3>
                     </a>
                 </div>
                 <div class="post-meta">
-                    （男・32歳　2020/1/14投稿）
+                    （男・32歳　{{ postcontent.post_date }}）
                 </div>
             </div>
             <div class="post-contents">
                 <div class="post-content-text">
                     <ul>
-                        <li>担当パート:Vo</li>
-                        <li>募集パート:Ba,Dr,Key,Sax</li>
-                        <li>活動地域:東京</li>
-                        <li>影響:はっぴいえんど・大滝詠一・細野晴臣・キセル（他6アーティスト）</li>
+                        <li>担当パート:
+                            {% for mypart in postcontent.mypart.all %}
+                                {{ mypart }},
+                            {% endfor %}
+                        </li>
+                        <li>募集パート:
+                            {% for recruite_part in postcontent.recruite_part.all %}
+                                {{ recruite_part }},
+                            {% endfor %}
+                        </li>
+                        <li>活動地域:
+                            {% for active_area in postcontent.active_area.all %}
+                                {{ active_area }},
+                            {% endfor %}
+                        </li>
+                        <li>影響:{{ postcontent.favorite }}</li>
                     </ul>
                 </div>
                 <div class="post-content-sound">
@@ -33,36 +46,6 @@
             </div>
         </div>
     </section>
-
-    <section class="post">
-        <img class="play-button" src="" alt="再生ボタン" srcset="">
-        <div class="post-body"><!-- play-button以外の部分を纏めてflexbox制御する為のdivです -->
-            <div class="post-header">
-                <div class="post-title">
-                    <h3>
-                        当方ボーカル希望！ほか全パート募集！
-                    </h3>
-                </div>
-                <div class="post-meta">
-                    （男・32歳　2020/1/14投稿）
-                </div>
-            </div>
-            <div class="post-contents">
-                <div class="post-content-text">
-                    <ul>
-                        <li>担当パート:Vo</li>
-                        <li>募集パート:Ba,Dr,Key,Sax</li>
-                        <li>活動地域:東京</li>
-                        <li>影響:はっぴいえんど・大滝詠一・細野晴臣・キセル（他6アーティスト）</li>
-                    </ul>
-                </div>
-                <div class="post-content-sound">
-                    再生バーをここに作るよ
-                </div>
-            </div>
-        </div>
-    </section>
-
-
 </div>
+{% endfor %}
 {% endblock %}

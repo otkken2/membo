@@ -1,0 +1,61 @@
+{% extends 'app/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="createpost-container">
+    <ol class="breadcrumb">
+        <li><a href=""><small>トップページ</small></a></li>
+        <li><a href=""><small>マイページ</small></a></li>
+        <li><a href=""><small>記事の管理</small></a></li>
+        <li><a href=""><small>新規作成</small></a></li>
+    </ol>
+    <h2>記事の新規作成</h2>
+    <div class="createpost-tabpanel-container">
+        <ul>
+            <li><a href="#bosyuu">メンバー募集記事</a></li>
+            <li><a href="#kanyuu">バンド加入希望記事</a></li>
+        </ul>
+        <div id="bosyuu"><!-- TODO　できればここを部品化する -->
+            <form  method="POST" class="createpost-tabpanel-bosyuuform" enctype="multipart/form-data" >{% csrf_token %}
+                <div class="fields form-title">
+                    <h3>{{ form.title.label }}</h3>
+                    {{ form.title|add_class:"createpost-form-title"}}                
+                </div>
+                <div class="fields form-sound">
+                    <h3>{{ form.sound.label }}</h3>
+                    {{ form.sound|add_class:"createpost-form-sound" }}
+                </div>
+                <div class="fields form-text">
+                    <h3>{{ form.text.label }}</h3>
+                    {{ form.text|add_class:"createpost-form-text" }}
+                </div>
+                <div class="fields form-active_area">
+                    <h3>{{ form.active_area.label }}</h3>
+                    {{ form.active_area|add_class:"createpost-form-active_area" }}
+                </div>
+                <div class="fields form-mypart">
+                    <h3>{{ form.mypart.label }}</h3>
+                    {{ form.mypart|add_class:"createpost-form-mypart" }}
+                </div>
+                <div class="fields form-recruite_part">
+                    <h3>{{ form.recruite_part.label }}</h3>
+                    {{ form.recruite_part|add_class:"createpost-form-recruite_part" }}
+                </div>
+                <div class="fields form-genre">
+                    <h3>{{ form.genre.label }}</h3>
+                    {{ form.genre|add_class:"createpost-form-genre" }}
+                </div>
+                <div class="fields form-favorite">
+                    <h3>{{ form.favorite.label }}</h3>
+                    {{ form.favorite|add_class:"createpost-form-favorite" }}
+                </div>
+                <br>
+            <input type="submit" value="確認画面へ">
+           </form>
+        </div>
+        <div id="kanyuu">
+
+        </div>
+    </div>
+</div>
+{% endblock %}

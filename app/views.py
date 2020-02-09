@@ -2,15 +2,60 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from .models import PostContent,get_media_sound_path
+from .forms import PostContentForm
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'app/index.html')
+    postcontents = PostContent.objects.all()
+    return render(request, 'app/index.html', {'postcontents':postcontents})
 
-def mypage(request,pk):
-    user = get_object_or_404(User, pk=pk)
-    return render (request, 'app/mypage.html',{'user': user})
+
+
+
+
+
+@login_required
+def mypage(request):
+    # user = get_object_or_404(User, pk=pk)
+    return render (request, 'app/mypage.html')
+
+
+
+
+
+@login_required
+def createpost(request):
+    if request.method == 'POST':
+        form = PostContentForm(request.POST, request.FILES)
+        if form.is_valid():
+            
+            post = form.save(commit=False)
+            post.author = request.user
+
+            # post.post_date = timezone.now()
+            # post.update_date = timezone.now()
+            post.save()
+            #追々、ここに「確認画面」へのリダイレクト処理を実装する。とりあえずは、ワンクリックで即、DBへ保存させてしまおう。  
+            return redirect('app:bosyuu_detail')
+    else:
+        form = PostContentForm()
+    return render (request, 'app/createpost.html',{'form':form})
+
+def bosyuu_detail(request):
+    postcontents = PostContent.objects.all()#本当は投稿記事のIDを指定して１記事のモデルインスタンスのみを取得する。
+    data={
+        'postcontents':postcontents,
+        'get_media_sound_path':get_media_sound_path,
+    }
+    return render(request, 'app/bosyuu_detail.html',data)
+
+
+
+
+
 
 def signup(request):
     if request.method == 'POST':

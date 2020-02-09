@@ -1,0 +1,148 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="main-container-contents-mypage-createpost">
+    <ol class="breadcrumb">
+        <li><a href=""><small>トップページ</small></a></li>
+        <li><a href=""><small>マイページ</small></a></li>
+        <li><a href=""><small>記事の管理</small></a></li>
+        <li><a href=""><small>新規作成</small></a></li>
+    </ol>
+    <h2>記事の新規作成</h2>
+    <div class="main-container-contents-mypage-createpost-tabpanel">
+        <ul>
+            <li><a href="#bosyuu">メンバー募集記事</a></li>
+            <li><a href="#kanyuu">バンド加入希望記事</a></li>
+        </ul>
+        <div id="bosyuu"><!-- TODO　できればここを部品化する -->
+            <form action="" method="post">
+                <label for="posttitle">タイトル</label>
+                <input type="text" id="posttitle" name="posttitle">
+                <br>
+                <label for="postsound">音源</label>
+                <input type="file" name="postsound" id="postsound">        
+                <br>
+                <label for="postarticle">本文</label>
+                <textarea name="postarticle" id="postarticle" cols="30" rows="10"></textarea>
+                <fieldset>
+                    <legend>投稿者のパート</legend>
+                    <label for="vo"><input type="checkbox" name="mypart" id="vo" value="vo">ボーカル</label>
+                    <label for="gt"><input type="checkbox" name="mypart" id="gt" value="gt">ギター</label>
+                    <label for="ba"><input type="checkbox" name="mypart" id="ba" value="ba">ベース</label>
+                    <label for="dr"><input type="checkbox" name="mypart" id="dr" value="dr">ドラム</label>
+                    <label for="perc"><input type="checkbox" name="mypart" id="perc" value="perc">その他打楽器</label>
+                    <label for="key"><input type="checkbox" name="mypart" id="key" value="key">ピアノ・エレピ</label>
+                    <label for="synth"><input type="checkbox" name="mypart" id="synth" value="synth">シンセ</label>
+                    <label for="songwrite"><input type="checkbox" name="mypart" id="songwrite" value="songwrite">作詞作曲</label>
+                    <label for="arange"><input type="checkbox" name="mypart" id="arange" value="arange">編曲</label>
+                    <label for="DJ"><input type="checkbox" name="mypart" id="DJ" value="DJ">DJ</label>
+                    <label for="woodwind"><input type="checkbox" name="mypart" id="woodwind" value="woodwind">木管楽器brass</label>
+                    <label for="brass"><input type="checkbox" name="mypart" id="brass" value="brass">金管楽器</label>
+                    <label for="world"><input type="checkbox" name="mypart" id="world" value="world">民族楽器</label>
+                    <label for="other"><input type="checkbox" name="mypart" id="other" value="other">その他</label>
+                </fieldset>               
+                <fieldset>
+                    <legend>募集パート</legend>
+                    <label for="vo"><input type="checkbox" name="yourpart" id="vo" value="vo">ボーカル</label>
+                    <label for="gt"><input type="checkbox" name="yourpart" id="gt" value="gt">ギター</label>
+                    <label for="ba"><input type="checkbox" name="yourpart" id="ba" value="ba">ベース</label>
+                    <label for="dr"><input type="checkbox" name="yourpart" id="dr" value="dr">ドラム</label>
+                    <label for="perc"><input type="checkbox" name="yourpart" id="perc" value="perc">その他打楽器</label>
+                    <label for="key"><input type="checkbox" name="yourpart" id="key" value="key">ピアノ・エレピ</label>
+                    <label for="synth"><input type="checkbox" name="yourpart" id="synth" value="synth">シンセ</label>
+                    <label for="songwrite"><input type="checkbox" name="yourpart" id="songwrite" value="songwrite">作詞作曲</label>
+                    <label for="arange"><input type="checkbox" name="yourpart" id="arange" value="arange">編曲</label>
+                    <label for="DJ"><input type="checkbox" name="yourpart" id="DJ" value="DJ">DJ</label>
+                    <label for="woodwind"><input type="checkbox" name="yourpart" id="woodwind" value="woodwind">木管楽器brass</label>
+                    <label for="brass"><input type="checkbox" name="yourpart" id="brass" value="brass">金管楽器</label>
+                    <label for="world"><input type="checkbox" name="yourpart" id="world" value="world">民族楽器</label>
+                    <label for="otherpart"><input type="checkbox" name="yourpart" id="otherpart" value="otherpart">その他</label>
+                </fieldset>
+                <fieldset>
+                    <legend>ジャンル</legend>
+                    <label for="pop"><input type="checkbox" name="genre" id="pop" value="pop">ポップ</label>
+                    <label for="rock"><input type="checkbox" name="genre" id="rock" value="rock">ロック</label>
+                    <label for="elctrodance"><input type="checkbox" name="genre" id="elctrodance" value="elctrodance">エレクトロ/ダンス</label>
+                    <label for="r&b"><input type="checkbox" name="genre" id="r&b" value="r&b">R&B</label>
+                    <label for="gospel"><input type="checkbox" name="genre" id="gospel" value="gospel">ゴスペル</label>
+                    <label for="soul"><input type="checkbox" name="genre" id="soul" value="soul">ソウル</label>
+                    <label for="jazz"><input type="checkbox" name="genre" id="jazz" value="jazz">ジャズ</label>
+                    <label for="classic"><input type="checkbox" name="genre" id="classic" value="classic">クラシック</label>
+                    <label for="punk"><input type="checkbox" name="genre" id="punk" value="punk">パンク</label>
+                    <label for="regae"><input type="checkbox" name="genre" id="regae" value="regae">レゲエ</label>
+                    <label for="metal"><input type="checkbox" name="genre" id="metal" value="metal">メタル</label>
+                    <label for="latin"><input type="checkbox" name="genre" id="latin" value="latin">ラテン</label>
+                    <label for="funk"><input type="checkbox" name="genre" id="funk" value="funk">ファンク</label>
+                    <label for="blues"><input type="checkbox" name="genre" id="blues" value="blues">ブルース</label>
+                    <label for="country"><input type="checkbox" name="genre" id="country" value="country">カントリー</label>
+                    <label for="folk"><input type="checkbox" name="genre" id="folk" value="folk">フォーク</label>
+                    <label for="acoustic"><input type="checkbox" name="genre" id="acoustic" value="acoustic">アコースティック</label>
+                    <label for="irish"><input type="checkbox" name="genre" id="irish" value="irish">アイリッシュ</label>
+                    <label for="instrumental"><input type="checkbox" name="genre" id="instrumental" value="instrumental">インスト</label>
+                    <label for="othergenre"><input type="checkbox" name="genre" id="othergenre" value="othergenre">その他</label>
+                </fieldset>              
+                <fieldset>
+                    <legend>活動エリア（都道府県）</legend>
+                    <label for="hokkaido"><input type="checkbox" name="activearea" id="hokkaido" value="hokkaido">北海道</label>
+                    <label for="aomori"><input type="checkbox" name="activearea" id="aomori" value="aomori">青森県</label>
+                    <label for="iwate"><input type="checkbox" name="activearea" id="iwate" value="iwate">岩手県</label>
+                    <label for="miyagi"><input type="checkbox" name="activearea" id="miyagi" value="miyagi">宮城県</label>
+                    <label for="akita"><input type="checkbox" name="activearea" id="akita" value="akita">秋田県</label>
+                    <label for="yamagata"><input type="checkbox" name="activearea" id="yamagata" value="yamagata">山形県</label>
+                    <label for="fukushima"><input type="checkbox" name="activearea" id="fukushima" value="fukushima">福島県</label>
+                    <label for="tokyo"><input type="checkbox" name="activearea" id="tokyo" value="tokyo">東京都</label>
+                    <label for="kanagawa"><input type="checkbox" name="activearea" id="kanagawa" value="kanagawa">神奈川県</label>
+                    <label for="saitama"><input type="checkbox" name="activearea" id="saitama" value="saitama">埼玉県</label>
+                    <label for="chiba"><input type="checkbox" name="activearea" id="chiba" value="chiba">千葉県</label>
+                    <label for="ibaraki"><input type="checkbox" name="activearea" id="ibaraki" value="ibaraki">茨城県</label>
+                    <label for="tochigi"><input type="checkbox" name="activearea" id="tochigi" value="tochigi">栃木県</label>
+                    <label for="gunma"><input type="checkbox" name="activearea" id="gunma" value="gunma">群馬県</label>
+                    <label for="yamanashi"><input type="checkbox" name="activearea" id="yamanashi" value="yamanashi">山梨県</label>
+                    <label for="niigata"><input type="checkbox" name="activearea" id="niigata" value="niigata">新潟県</label>
+                    <label for="nagano"><input type="checkbox" name="activearea" id="nagano" value="nagano">長野県</label>
+                    <label for="toyama"><input type="checkbox" name="activearea" id="toyama" value="toyama">富山県</label>
+                    <label for="ishikawa"><input type="checkbox" name="activearea" id="ishikawa" value="ishikawa">石川県</label>
+                    <label for="fukui"><input type="checkbox" name="activearea" id="fukui" value="fukui">福井県</label>
+                    <label for="aichi"><input type="checkbox" name="activearea" id="aichi" value="aichi">愛知県</label>
+                    <label for="gifu"><input type="checkbox" name="activearea" id="gifu" value="gifu">岐阜県</label>
+                    <label for="shizuoka"><input type="checkbox" name="activearea" id="shizuoka" value="shizuoka">静岡県</label>
+                    <label for="mie"><input type="checkbox" name="activearea" id="mie" value="mie">三重県</label>
+                    <label for="osaka"><input type="checkbox" name="activearea" id="osaka" value="osaka">大阪府</label>
+                    <label for="hyogo"><input type="checkbox" name="activearea" id="hyogo" value="hyogo">兵庫県</label>
+                    <label for="kyoto"><input type="checkbox" name="activearea" id="kyoto" value="kyoto">京都府</label>
+                    <label for="shiga"><input type="checkbox" name="activearea" id="shiga" value="shiga">滋賀県</label>
+                    <label for="nara"><input type="checkbox" name="activearea" id="nara" value="nara">奈良県</label>
+                    <label for="wakayama"><input type="checkbox" name="activearea" id="wakayama" value="wakayama">和歌山県</label>
+                    <label for="tottori"><input type="checkbox" name="activearea" id="tottori" value="tottori">鳥取県</label>
+                    <label for="shimane"><input type="checkbox" name="activearea" id="shimane" value="shimane">島根県</label>
+                    <label for="okayama"><input type="checkbox" name="activearea" id="okayama" value="okayama">岡山県</label>
+                    <label for="hiroshima"><input type="checkbox" name="activearea" id="hiroshima" value="hiroshima">広島県</label>
+                    <label for="yamaguchi"><input type="checkbox" name="activearea" id="yamaguchi" value="yamaguchi">山口県</label>
+                    <label for="tokushima"><input type="checkbox" name="activearea" id="tokushima" value="tokushima">徳島県</label>
+                    <label for="kagawa"><input type="checkbox" name="activearea" id="kagawa" value="kagawa">香川県</label>
+                    <label for="ehime"><input type="checkbox" name="activearea" id="ehime" value="ehime">愛媛県</label>
+                    <label for="kouchi"><input type="checkbox" name="activearea" id="kouchi" value="kouchi">高知県</label>
+                    <label for="fukuoka"><input type="checkbox" name="activearea" id="fukuoka" value="fukuoka">福岡県</label>
+                    <label for="saga"><input type="checkbox" name="activearea" id="saga" value="saga">佐賀県</label>
+                    <label for="nagasaki"><input type="checkbox" name="activearea" id="nagasaki" value="nagasaki">長崎県</label>
+                    <label for="kumamoto"><input type="checkbox" name="activearea" id="kumamoto" value="kumamoto">熊本県</label>
+                    <label for="oita"><input type="checkbox" name="activearea" id="oita" value="oita">大分県</label>
+                    <label for="miyazaki"><input type="checkbox" name="activearea" id="miyazaki" value="miyazaki">宮崎県</label>
+                    <label for="kagoshima"><input type="checkbox" name="activearea" id="kagoshima" value="kagoshima">鹿児島県</label>
+                    <label for="okinawa"><input type="checkbox" name="activearea" id="okinawa" value="okinawa">沖縄県</label>
+                </fieldset>              
+                <fieldset>
+                    <legend>活動の曜日</legend>
+                    <label for="weekends"><input type="checkbox" name="daysofweek" id="weekends" value="weekends">土日</label>
+                    <label for="weekday"><input type="checkbox" name="daysofweek" id="weekday" value="weekday">平日</label>
+                    <label for="unspecified"><input type="checkbox" name="daysofweek" id="unspecified" value="unspecified">指定なし</label>
+                </fieldset>
+                <input type="submit" value="確認画面へ">
+           </form>
+        </div>
+        <div id="kanyuu">
+
+        </div>
+    </div>
+</div>
+{% endblock %}
