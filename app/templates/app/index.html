@@ -9,7 +9,7 @@
         <div class="post-body"><!-- play-button以外の部分を纏めてflexbox制御する為のdivです -->
             <div class="post-header">
                 <div class="post-title">    
-                    <a href="{% url 'app:bosyuu_detail' %}"> <!--  bosyuu_detailの中身は後に正しい内容に変更する。その際、記事の主キーを渡すようにこのhrefも変更する。-->
+                    <a href="{% url 'app:bosyuu_detail'　postcontent_id=postcontent.id %}"> <!--  bosyuu_detailの中身は後に正しい内容に変更する。その際、記事の主キーを渡すようにこのhrefも変更する。-->
                         <h3>
                             {{ postcontent.title }}
                         </h3>
@@ -41,7 +41,9 @@
                     </ul>
                 </div>
                 <div class="post-content-sound">
-                        再生バーをここに作るよ
+                    <audio controls>
+                        <source src="{{ postcontent.sound.url }}" type="audio/mp3" />
+                    </audio>
                 </div>
             </div>
         </div>

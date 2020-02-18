@@ -19,6 +19,7 @@ class PostContentForm(forms.ModelForm):
         'recruite_part',
         'genre',
         'favorite',
+        'days_of_theweek',
         ]
         # widgets = {
         #     'mypart':forms.CheckboxSelectMultiple,

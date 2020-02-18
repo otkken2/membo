@@ -3,6 +3,16 @@
 {% block content %}
 <div class="main-container-contents-mypage">
     *こんにちは、{{ user.username }}さん！ここはあなた専用のページです*
+
+    <p>あなたの記事↓</p>
+    {% for mypost in myposts %}
+    <ul>
+        <li><a href="{% url 'app:bosyuu_edit' mypost.id %}">{{ mypost.title }}</a></li>
+    </ul>
+    {% endfor %}
+    
+    {{ user.id }}
+
     <div>
         <a href="{% url 'app:createpost' %}">
             記事を新規作成する
