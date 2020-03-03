@@ -20,6 +20,11 @@ class Genre(models.Model):
     def __str__(self):
         return self.genrename
 
+class DaysOfTheWeek(models.Model):
+    choicename = models.CharField('曜日の希望',max_length=50)
+    def __str__(self):
+        return self.choicename
+
 # class SoundFile(models.Model):
 #     sounds = models.FileField('音源',upload_to='uploads',null=True)
 
@@ -44,12 +49,12 @@ class PostContent(models.Model):
     text = models.TextField('本文')
     post_date = models.DateTimeField(default=timezone.now)
     update_date = models.DateTimeField(auto_now_add=True)
-    active_area = models.ManyToManyField(Prefecture,verbose_name='活動エリア（都道府県）',null=True)
+    active_area = models.ManyToManyField(Prefecture,verbose_name='活動エリア')
     mypart = models.ManyToManyField(Instrument,verbose_name='投稿者のパート',null=True,related_name='mypart')
     recruite_part = models.ManyToManyField(Instrument,verbose_name='募集パート',null=True,related_name='recruite_part')
     genre = models.ManyToManyField(Genre,verbose_name='ジャンル',null=True)
     favorite = models.TextField('好きなアーティスト',null=True)
-    days_of_theweek = models.CharField('活動の曜日',max_length=50,null=True,choices=DAYS_CHOICE)
+    days_of_theweek = models.ManyToManyField(DaysOfTheWeek,verbose_name='活動の曜日',max_length=50,null=True,related_name='days_oftheweek')
 
     def __str__(self):
         return self.title

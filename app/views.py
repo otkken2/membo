@@ -4,8 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+
 from .models import PostContent,get_media_sound_path
-from .forms import PostContentForm
+from .forms import *
+import hashlib
+from django.utils import timezone
 
 # Create your views here.
 
@@ -59,20 +62,30 @@ def createpost(request):
             post = form.save(commit=False)
             post.author = request.user
 
-            # post.post_date = timezone.now()
-            # post.update_date = timezone.now()
+            post.post_date = timezone.now()
             post.save()
+            form.save_m2m()
             #追々、ここに「確認画面」へのリダイレクト処理を実装する。とりあえずは、ワンクリックで即、DBへ保存させてしまおう。  
-            return redirect('app:bosyuu_detail')
+            return redirect('app:bosyuu_detail',post.id)
     else:
         form = PostContentForm()
     return render (request, 'app/createpost.html',{'form':form})
 
 def bosyuu_detail(request,postcontent_id):
     postcontent = PostContent.objects.get(id=postcontent_id)
+    
+
+    name1 = str(request.user)
+    name2 = str(postcontent.author)
+
+    name_list = [name1,name2]
+    name_list_sorted = sorted(name_list)
+
     data={
         'postcontent':postcontent,
         'get_media_sound_path':get_media_sound_path,
+        'name1':name_list_sorted[0],
+        'name2':name_list_sorted[1],
     }
     return render(request, 'app/bosyuu_detail.html',data)
 
@@ -83,7 +96,7 @@ def bosyuu_detail(request,postcontent_id):
 def bosyuu_delete(request,postcontent_id):
     postcontent = get_object_or_404(PostContent,id=postcontent_id)
     postcontent.delete()
-    redirect ('app:index')
+    return redirect('app:index')
 
 def editpost(request,postcontent_id):
     postcontent = get_object_or_404(PostContent,id=postcontent_id)
@@ -95,3 +108,4 @@ def editpost(request,postcontent_id):
     else:
         form = PostContentForm(instance=postcontent)
     return render(request, 'app/bosyuu_edit.html',{'form':form,'postcontent':postcontent})
+

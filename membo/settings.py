@@ -33,8 +33,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'channels',
-    'chatapp',
+    'chat',
     'app',
+    'search',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -150,11 +151,10 @@ SOCIAL_AUTH_TWITTER_SECRET = twitter.SOCIAL_AUTH_TWITTER_SECRET
 
 ASGI_APPLICATION = 'membo.routing.application'
 CHANNEL_LAYERS = {
-    "default":{
-        "BACKEND":"channels_redis.core.RedisChannelLayer",
-        "CONFIG":{
-            "hosts": [('127.0.0.1',6379)]
-        }
-    }
+    'default':{
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG':{
+            "hosts":[('127.0.0.1',6379)],
+        },
+    },
 }
-

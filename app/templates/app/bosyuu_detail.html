@@ -1,56 +1,70 @@
 {% extends 'app/base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="post">
-        
-        {{ postcontent.post_date }}<br>
-        
-        {{ postcontent.title }}<br>
-        {{ postcontent.sound.filename }}<br><!-- あとでここも考える。 -->
-        
-        <audio controls>
-            <source src="{{ postcontent.sound.url }}" type="audio/mp3" />
-        </audio>
-        
-        {{ postcontent.text }}<br>
-        
-        {% for active_area in postcontent.active_area.all %}
-            {{ active_area }}<br>
-        {% endfor %}
-
-        
-        {{ postcontent.favorite }}<br>
-
-        {% for mypart in postcontent.mypart.all %}
-        {{ mypart }}<br>
-        {% endfor %}
-        
-        {% for recruite_part in postcontent.recruite_part.all %}
-        {{ recruite_part }}<br>
-        {% endfor %}
-
-        {% for genre in postcontent.genre.all %}
-        {{ genre }}<br>
-        {% endfor %}
-
-        {{ postcontent.days_of_theweek }}
-
-        <!-- 削除&編集ボタン。投稿者のみが操作できるようにする -->
-        {% if request.user == postcontent.author %} 
-        <a href="{% url 'app:bosyuu_edit' postcontent.id %}">
-            <button class="btn">編集</button>
-        </a>
-
-        <form  method="post" action="{% url 'app:bosyuu_delete' postcontent.id %}">
-            {% csrf_token %}
-            <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");' >削除</button>
-        </form>
-        {% endif %}
-        
-
-        
-        
-        
-
-    </div>
+    <section class="post">
+        <img class="play-button" src="" alt="再生ボタン" srcset="">
+        <div class="post-body"><!-- play-button以外の部分を纏めてflexbox制御する為のdivです -->
+            <div class="post-header">
+                <div class="post-title">    
+                    <a href="{% url 'app:bosyuu_detail'　postcontent_id=postcontent.id %}"> <!--  bosyuu_detailの中身は後に正しい内容に変更する。その際、記事の主キーを渡すようにこのhrefも変更する。-->
+                        <h3>{{ postcontent.title }}</h3>
+                    </a>
+                </div>
+                <div class="post-meta">（男・32歳　{{ postcontent.post_date }}）</div>
+            </div>
+            <div class="post-contents">
+                <div class="post-content-sound"><audio controls><source src="{{ postcontent.sound.url }}" type="audio/mp3" /></audio></div>
+                <div class="post-content-text">
+                    <ul>
+                        <li>本文:{{ postcontent.text }}</li>
+                        <li>担当パート:
+                            {% for mypart in postcontent.mypart.all %}
+                                {{ mypart }},
+                            {% endfor %}
+                        </li>
+                        <li>募集パート:
+                            {% for recruite_part in postcontent.recruite_part.all %}
+                                {{ recruite_part }},
+                            {% endfor %}
+                        </li>
+                        <li>活動地域:
+                            {% for active_area in postcontent.active_area.all %}
+                                {{ active_area }},
+                            {% endfor %}
+                        </li>
+                        <li>影響:{{ postcontent.favorite }}</li>
+                        <li>ジャンル:
+                            {% for genre in postcontent.genre.all %}
+                            {{ genre }},
+                            {% endfor %}
+                        </li>
+                        <li>
+                            曜日:
+                            {% for days_of_theweek in postcontent.days_of_theweek.all %}
+                            {{ days_of_theweek }}
+                            {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 削除&編集ボタン。投稿者のみが操作できるようにする -->
+            {% if request.user == postcontent.author %} 
+            <a href="{% url 'app:bosyuu_edit' postcontent.id %}">
+                <button class="btn">編集</button>
+            </a>
+    
+            <form  method="post" action="{% url 'app:bosyuu_delete' postcontent.id %}">
+                {% csrf_token %}
+                <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");' >削除</button>
+            </form>
+            {% endif %}
+            <!-- この記事の投稿者が自分で「ない」場合のみ、チャットルームへのリンクを表示 -->
+            {% if request.user != postcontent.author %} 
+            <a href="{% url 'chat:room' name1 name2 %}">
+                <div>【{{ postcontent.author }}とチャット】</div>
+            </a>
+            {% endif %}
+        </div>
+    </section>
 {% endblock %}

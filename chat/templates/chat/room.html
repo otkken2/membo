@@ -1,0 +1,123 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="chatroom-main-container">
+        <div id="text-output-area"></div>
+        <textarea name="" id="chat-message-input" ></textarea>
+        <input id="chat-message-submit" type="button" value="送信"/>
+    </div>
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script>
+        var roomName = {{ room_name_json }};
+        var chatSocket = new WebSocket(
+            'ws://' + window.location.host + 
+            '/ws/chat/' + roomName + '/'
+        );
+
+        // メッセージの入った吹き出しを表示する関数
+        function makeChatBalloon(message,handle,date){
+            // まず、吹き出し用divを作成
+            var balloon = document.createElement("div");
+            balloon.className = "balloon";
+            
+            //メッセージを吹き出しの中へはめ込む
+            balloon.innerText = message;
+            
+            // 吹き出しの上に自分の名前や日付を表示するためのメタ情報divを作成し、クラス名も付与
+            var balloonMetainfo = document.createElement("div");
+            balloonMetainfo.className = "balloon-metainfo";
+
+            //divにメタ情報を挿入
+            balloonMetainfo.innerText = handle + '投稿日時:　'　+ date;
+            
+            //吹き出しとメタ情報をまとめるcontainer用のdivを用意する
+            var balloonContainer = document.createElement('div');
+            
+            //吹き出しとメタ情報をcontainer用のdivに格納する
+            balloonContainer.appendChild(balloonMetainfo);
+            balloonContainer.appendChild(balloon);
+
+            //自分の発言か否かでballoonContainerに与えるクラス名を制御し、表示を切り替える
+            if(handle === '{{ user.username }}' ){
+                balloonContainer.className = "my-balloon-container balloon-container";
+            }else{
+                balloonContainer.className = "not-my-balloon-container balloon-container";
+            }
+
+            //吹き出しを追加表示するエリア（div）を指定
+            var addTo = document.getElementById('text-output-area');
+            //吹き出しを追加
+            addTo.appendChild(balloonContainer);
+            ///////////////////////////////////////
+            //////////////////////////////////////
+        }
+    
+        //画面をロードするタイミングで、このroomにて投稿された既存のChatLogを読み込む
+        window.onload = (event) => {
+            {% for chatlog in chatlogs %}   
+                var message = '{{ chatlog.message }}';
+                var handle = '{{ chatlog.handle }}';
+                var date = '{{ chatlog.date }}';
+                makeChatBalloon(message,handle,date);    
+            {% endfor %}
+        };
+        
+        //メッセージを受け取った時
+        chatSocket.onmessage = function(e){
+            console.log(e);
+            var data = JSON.parse(e.data);
+            var message = data['message'];
+            var handle = data['handle'];
+            var date = data['date'];
+            
+            // メッセージを表示
+            makeChatBalloon(message,handle,date);
+
+            //一番下までスクロールして最新の吹き出しをすぐ見れるように。
+            var textOutputAreaDom = document.getElementById('text-output-area');
+            var bottom = textOutputAreaDom.scrollHeight - textOutputAreaDom.clientHeight;//吹き出し表示エリアの最下部のスクロール位置を取得
+            
+            $(function(){
+                $('#text-output-area').animate({scrollTop: bottom},'fast');
+            });
+        };
+    
+        chatSocket.onclose = function(e){
+            console.error('Chat socket closed unexpectedly');
+        };
+    
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e){
+            if(e.keycode === 13){
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+        
+        // 送信ボタンを押した時
+        document.querySelector('#chat-message-submit').onclick = function(e){
+            // 送信するメッセージを取得
+            var messageInputDom = document.querySelector('#chat-message-input');
+            var message = messageInputDom.value;
+
+            //送信した時刻を取得
+            var username = '{{ user.username }}';
+            var now = new Date();
+            var date = now.toLocaleString();            
+
+            // ユーザー名とメッセージと時刻を送信
+            chatSocket.send(JSON.stringify({　//ここのデータがconsumers.pyに送られ、そしてまた返ってくる
+                'handle':'{{ user.username }}',
+                'message':message,
+                'date':date
+            }));
+    
+            messageInputDom.value = '';
+        }
+
+    </script>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'app/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="search-container"><!-- 検索ページ全体を包む-->
+    <ol class="breadcrumb"><!-- パンクズリスト -->
+        <li><a href=""><small>トップページ</small></a></li>
+        <li><a href=""><small>記事の検索</small></a></li>
+    </ol>
+    <h2>記事の検索</h2>
+    <div class="bosyuu"><!-- 募集記事についての検索フォーム＆検索結果表示エリア-->
+        <form method="post">{% csrf_token %}
+            <!-- select式以外の（テキスト入力式の）fieldに関する検索フォーム -->
+            <h3>{{ search_form.search.label }}</h3>
+            {{ search_form.search|add_class:"searchword-input" }}
+            <!-- M2Mフィールド用のフォーム　-->
+            <div class="fields form-active_area">
+                <h3>{{ form.active_area.label }}</h3>
+                {{ form.active_area|add_class:"post-form-active_area" }}
+            </div>
+            <div class="fields form-mypart">
+                <h3>{{ form.mypart.label }}</h3>
+                {{ form.mypart|add_class:"post-form-mypart" }}
+            </div>
+            <div class="fields form-recruite_part">
+                <h3>{{ form.recruite_part.label }}</h3>
+                {{ form.recruite_part|add_class:"post-form-recruite_part" }}
+            </div>
+            <div class="fields form-genre">
+                <h3>{{ form.genre.label }}</h3>
+                {{ form.genre|add_class:"post-form-genre" }}
+            </div>
+            <button type="submit" class="button">検索</button>
+        </form>
+        
+        <div class="search-result"> <!-- 検索ヒット記事の暫定的な表示エリア　 -->
+            {% if result_count == 0 %}
+            <h3>検索結果は0件です。<br>検索条件を変更して再度やり直してください。</h3>
+            {% else %}
+            <h3>検索結果:{{ result_count }}件</h3>
+            {% endif %}
+            {% for postcontent in postcontents %}
+                <div class="posts">
+                    {% include "app/post-overview.html" %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script>
+    // デバッグ
+    console.log('active_areaのリスト:{{ m2m_search_active_area }}');
+    console.log('mypartのリスト:{{ m2m_search_mypart }}');
+    console.log('recruite_partのリスト:{{ m2m_search_recruite_part }}');
+    console.log('genreのリスト:{{ m2m_search_genre }}');
+    console.log('searchword_list:{{ searchword_list }}');
+    console.log('result_count:{{ result_count }}');
+</script>
+{% endblock %}

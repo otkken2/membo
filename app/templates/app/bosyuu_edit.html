@@ -1,5 +1,5 @@
 {% extends 'app/base.html' %}
-
+{% load widget_tweaks %}
 
 {% block content %}
 <div class="post-container">
@@ -15,48 +15,7 @@
             <li><a href="#bosyuu">メンバー募集記事</a></li>
             <li><a href="#kanyuu">バンド加入希望記事</a></li>
         </ul>
-        <div id="bosyuu"><!-- TODO　できればここを部品化する -->
-            <form  method="POST" class="post-tabpanel-bosyuuform" enctype="multipart/form-data" >{% csrf_token %}
-                <div class="fields form-title">
-                    <h3>{{ form.title.label }}</h3>
-                    {{ form.title }}                
-                </div>
-                <div class="fields form-sound">
-                    <h3>{{ form.sound.label }}</h3>
-                    {{ form.sound }}
-                </div>
-                <div class="fields form-text">
-                    <h3>{{ form.text.label }}</h3>
-                    {{ form.text }}
-                </div>
-                <div class="fields form-active_area">
-                    <h3>{{ form.active_area.label }}</h3>
-                    {{ form.active_area }}
-                </div>
-                <div class="fields form-mypart">
-                    <h3>{{ form.mypart.label }}</h3>
-                    {{ form.mypart }}
-                </div>
-                <div class="fields form-recruite_part">
-                    <h3>{{ form.recruite_part.label }}</h3>
-                    {{ form.recruite_part }}
-                </div>
-                <div class="fields form-genre">
-                    <h3>{{ form.genre.label }}</h3>
-                    {{ form.genre }}
-                </div>
-                <div class="fields form-favorite">
-                    <h3>{{ form.favorite.label }}</h3>
-                    {{ form.favorite }}
-                </div>
-                <div class="fields form-days-of-theweek">
-                    <h3>{{ form.days_of_theweek.label }}</h3>
-                    {{ form.days_of_theweek }}
-                </div>
-                <br>
-            <button type="submit" class="button">この内容で保存</button>
-           </form>
-        </div>
+        {% include "app/bosyuu-article.html" %}
         <div id="kanyuu">
 
         </div>

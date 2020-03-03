@@ -2,12 +2,7 @@
 from django import forms
 from .models import PostContent
 
-
-# class SounfFileForm(forms.ModelForm):
-#     class Meta:
-#         model = SoundFile
-#         fields = '__all__'
-
+    
 class PostContentForm(forms.ModelForm):
     class Meta:
         model = PostContent
@@ -21,23 +16,13 @@ class PostContentForm(forms.ModelForm):
         'favorite',
         'days_of_theweek',
         ]
-        # widgets = {
-        #     'mypart':forms.CheckboxSelectMultiple,
-        #     'recruite_part':forms.CheckboxSelectMultiple,
-        #     'active_area':forms.CheckboxSelectMultiple,
-        #     'genre':forms.CheckboxSelectMultiple
-        #     }
-        # labels = {
-        #     'title':'タイトル',
-        #     'text':'本文',
-        #     'sound':'参考音源',
-        #     'mypart':'投稿者のパート',
-        #     'yourpart':'募集するパート',
-        #     'active_area':'活動エリア（都道府県）',
-        #     'genre':'ジャンル',
-        #     'favorite':'好きなアーティスト'
-        # }
-
+        widgets = {
+            'mypart':forms.CheckboxSelectMultiple,
+            'recruite_part':forms.CheckboxSelectMultiple,
+            'active_area':forms.CheckboxSelectMultiple,
+            'genre':forms.CheckboxSelectMultiple,
+            'days_of_theweek':forms.CheckboxSelectMultiple,
+        }
 
 
 
