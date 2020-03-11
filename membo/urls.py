@@ -25,3 +25,15 @@ urlpatterns = [
     path('chat/',include('chat.urls')),
     path('search/',include('search.urls')),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/',include(debug_toolbar.urls)),
+
+        path('admin/', admin.site.urls),
+        path('auth/',include('social_django.urls', namespace='social')),
+        path('',include('app.urls')),
+        path('chat/',include('chat.urls')),
+        path('search/',include('search.urls')),
+    ]

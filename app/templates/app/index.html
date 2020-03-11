@@ -2,12 +2,10 @@
 {% load static %}
 
 {% block content %}
-<ol class="breadcrumb"><!-- パンクズリスト -->
-    <li><a href="{% url 'app:index' %}"><small>トップページ</small></a></li>
-</ol>
-{% for postcontent in postcontents %}
-<div class="posts">
+
+    <h2>トップページ</h2>
+    {% for postcontent in postcontents %}
     {% include "app/post-overview.html" %}
-</div>
-{% endfor %}
+    {% endfor %}
+
 {% endblock %}

@@ -1,18 +1,22 @@
 {% extends 'app/base.html' %}
 {% load widget_tweaks %}
+{% load cache %}
 
 {% block content %}
 <div class="search-container"><!-- 検索ページ全体を包む-->
+    {% cache 300 content %}
     <ol class="breadcrumb"><!-- パンクズリスト -->
-        <li><a href=""><small>トップページ</small></a></li>
-        <li><a href=""><small>記事の検索</small></a></li>
+        <li><a href="{% url 'app:index' %}"><small>トップページ</small></a></li>
+        <li><small>記事の検索</small></li>
     </ol>
     <h2>記事の検索</h2>
     <div class="bosyuu"><!-- 募集記事についての検索フォーム＆検索結果表示エリア-->
         <form method="post">{% csrf_token %}
             <!-- select式以外の（テキスト入力式の）fieldに関する検索フォーム -->
-            <h3>{{ search_form.search.label }}</h3>
-            {{ search_form.search|add_class:"searchword-input" }}
+            <div class="fields">
+                <h3>{{ search_form.search.label }}</h3>
+                {{ search_form.search|add_class:"searchword-input" }}
+            </div>
             <!-- M2Mフィールド用のフォーム　-->
             <div class="fields form-active_area">
                 <h3>{{ form.active_area.label }}</h3>
@@ -30,9 +34,12 @@
                 <h3>{{ form.genre.label }}</h3>
                 {{ form.genre|add_class:"post-form-genre" }}
             </div>
-            <button type="submit" class="button">検索</button>
+
+            <div class="button-container">
+                <button type="submit" class="button">検索</button>
+            </div>
         </form>
-        
+    {% endcache %}    
         <div class="search-result"> <!-- 検索ヒット記事の暫定的な表示エリア　 -->
             {% if result_count == 0 %}
             <h3>検索結果は0件です。<br>検索条件を変更して再度やり直してください。</h3>

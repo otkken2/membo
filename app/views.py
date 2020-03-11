@@ -27,6 +27,7 @@ def signup(request):
                 #loginメソッドは、認証が出来ていなくてもログインさせることができる。（上の authenticate で認証を実行する）
                 login(request, new_user)
                 return redirect('app:mypage',pk=new_user.pk)
+                # return redirect('app:mypage')
     else:
         form = UserCreationForm()
     return render(request, 'app/signup.html', {'form':form})
@@ -36,7 +37,7 @@ def signup(request):
 
 
 def index(request):
-    postcontents = PostContent.objects.all()
+    postcontents = PostContent.objects.all().order_by('-post_date')
     return render(request, 'app/index.html', {'postcontents':postcontents})
 
 

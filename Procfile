@@ -1,0 +1,1 @@
+web: gunicorn membo.wsgi --log-file -

@@ -1,5 +1,5 @@
 <section class="post">
-    <img class="play-button" src="" alt="再生ボタン" srcset="">
+    
     <div class="post-body"><!-- play-button以外の部分を纏めてflexbox制御する為のdivです -->
         <div class="post-header">
             <div class="post-title">    
@@ -10,11 +10,14 @@
                 </a>
             </div>
             <div class="post-meta">
-                （男・32歳　{{ postcontent.post_date }}）
+                （投稿日時：　{{ postcontent.post_date }}）
             </div>
         </div>
         <div class="post-contents">
-            <div class="post-content-text">
+            <div class="post-content-sound">
+                <audio controls><source src="{{ postcontent.sound.url }}" type="audio/mp3" /></audio>
+            </div>
+            <div class="post-content-issues">
                 <ul>
                     <li>担当パート:
                         {% for mypart in postcontent.mypart.all %}
@@ -38,11 +41,6 @@
                     </li>
                     <li>影響:{{ postcontent.favorite }}</li>
                 </ul>
-            </div>
-            <div class="post-content-sound">
-                <audio controls>
-                    <source src="{{ postcontent.sound.url }}" type="audio/mp3" />
-                </audio>
             </div>
         </div>
     </div>

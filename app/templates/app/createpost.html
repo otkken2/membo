@@ -4,17 +4,12 @@
 {% block content %}
 <div class="post-container">
     <ol class="breadcrumb">
-        <li><a href=""><small>トップページ</small></a></li>
-        <li><a href=""><small>マイページ</small></a></li>
-        <li><a href=""><small>記事の管理</small></a></li>
-        <li><a href=""><small>新規作成</small></a></li>
+        <li><a href="{% url 'app:index' %}"><small>トップページ</small></a></li>
+        <li><a href="{% url 'app:mypage' %}"><small>マイページ</small></a></li>
+        <li><small>新規作成</small></li>
     </ol>
     <h2>記事の新規作成</h2>
-    <div class="post-tabpanel-container">
-        <ul>
-            <li><a href="#bosyuu">メンバー募集記事</a></li>
-            <li><a href="#kanyuu">バンド加入希望記事</a></li>
-        </ul>
+    <div class="create-post-container">
         <div class="bosyuu"><!-- TODO　できればここを部品化する -->
             {% include "app/bosyuu-article.html" %}
         </div>

@@ -2,21 +2,35 @@
 {% load static %}
 
 {% block content %}
-    どのチャットルームに入室しますか？
-    <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter"/>
+    <ol class="breadcrumb"><!-- パンクズリスト -->
+        <li><a href="{% url 'app:index' %}"><small>トップページ</small></a></li>
+        <li><small>チャット相手一覧</small></li>
+    </ol>
+    <h2>チャット相手一覧</h2>
+
+    {% if my_room_name_list_count != 0 %}
+        <!-- ルーム参加者リストから、一人の名前を取り出す -->
+        {% for room_member_name in room_members_name %} 
+            <!-- 取り出された名前を判定にかけ、条件分岐する -->
+            <!-- 判定材料として使うため、まずルーム名の一覧から,[for in]を回して一つのルーム名を取り出す -->
+            {% for my_room_name in my_room_name_list %}
+                <!-- もし、この参加者の名前がルーム名に含まれており、
+                尚且つ、自分（user.username）の名前ではない場合、
+                この参加者の名前を表示し、href="ルーム名"とする　-->
+                {% if room_member_name in my_room_name and room_member_name != user.username%}
+                    <div><a href="{% url 'chat:index' %}{{ my_room_name }}">{{ room_member_name }}</a></div>
+                {% endif %}
+                <!-- これ以外の場合、特に何もしない -->
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        まだやりとりしている相手はいません。
+    {% endif %}
 
     <script>
-        document.querySelector('#room-name-input').focus();
-        document.querySelector('#room-name-input').onkeyup = function(e){
-            if(e.keyCode === 13) {
-                document.querySelector('#room-name-submit').click();
-            }
-        };
-
-        document.querySelector('#room-name-submit').onclick = function(e){
-            var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/chat/' + roomName + '/';
-        };
-    </script>
+        console.log("my_room_name_list:{{my_room_name_list}}");
+        console.log("chat_partner_names:{{chat_partner_names}}");
+        console.log("room_members_name:{{room_members_name}}");
+    </script> 
+    
 {% endblock %}

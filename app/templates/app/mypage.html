@@ -1,23 +1,39 @@
 {% extends 'app/base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
+<ol class="breadcrumb"><!-- パンクズリスト -->
+    <li><a href="{% url 'app:index' %}"><small>トップページ</small></a></li>
+    <li><small>マイページ</small></li>
+</ol>
 <div class="main-container-contents-mypage">
+    <h2>マイページ</h2>
     *こんにちは、{{ user.username }}さん！ここはあなた専用のページです*
+        <button class="">
+            <a href="{% url 'chat:index' %}">チャット相手一覧</a>
+        </button>
+    
+        <button class="button-createpost">
+            <a href="{% url 'app:createpost' %}">記事を新規作成する</a>
+        </button>
 
-    <p>あなたの記事↓</p>
+    <h4>記事を管理する</h4>
     {% for mypost in myposts %}
-    <ul>
-        <li><a href="{% url 'app:bosyuu_edit' mypost.id %}">{{ mypost.title }}</a></li>
-    </ul>
+    <div class="mypage-post">
+        <div class="mypage-post-title">
+            <a href="{% url 'app:bosyuu_detail' mypost.id %}">{{ mypost.title}}</a>
+        </div>
+        <div class="button-container"><!-- 削除&編集ボタン -->
+            <a href="{% url 'app:bosyuu_edit' mypost.id %}">
+                <button class="button-edit">編集</button>
+            </a>
+            <form  method="post" action="{% url 'app:bosyuu_delete' mypost.id %}">
+                {% csrf_token %}
+                <button class="button-delete" type="submit" onclick='return confirm("本当に削除しますか？");' >削除</button>
+            </form>
+        </div>
+    </div>
     {% endfor %}
     
-    <a href="{% url 'chat:index' %}">チャットルームへ入る</a>
-    
-
-    <div>
-        <a href="{% url 'app:createpost' %}">
-            記事を新規作成する
-        </a>
-    </div>
 </div>
 {% endblock %}

@@ -2,10 +2,16 @@
 {% load static %}
 
 {% block content %}
+    <ol class="breadcrumb"><!-- パンクズリスト -->
+        <li><a href="{% url 'app:index' %}"><small>トップページ</small></a></li>
+        <li><a href="{% url 'chat:index' %}"><small>チャット相手一覧</small></a></li>
+        <li><small>チャット</small></li>
+    </ol>
     <div class="chatroom-main-container">
         <div id="text-output-area"></div>
         <textarea name="" id="chat-message-input" ></textarea>
-        <input id="chat-message-submit" type="button" value="送信"/>
+        <!-- <input id="chat-message-submit" type="button" value="送信"/> -->
+        <button type="submit" id="chat-message-submit">送信</button>
     </div>
 
     <script
@@ -60,9 +66,9 @@
         //画面をロードするタイミングで、このroomにて投稿された既存のChatLogを読み込む
         window.onload = (event) => {
             {% for chatlog in chatlogs %}   
-                var message = '{{ chatlog.message }}';
-                var handle = '{{ chatlog.handle }}';
-                var date = '{{ chatlog.date }}';
+                var message = `{{ chatlog.message }}`;
+                var handle = `{{ chatlog.handle }}`;
+                var date = `{{ chatlog.date }}`;
                 makeChatBalloon(message,handle,date);    
             {% endfor %}
         };
