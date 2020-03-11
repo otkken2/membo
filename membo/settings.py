@@ -143,13 +143,13 @@ LOGIN_URL = 'app:login'
 LOGIN_REDIRECT_URL ='app:index'
 LOGOUT_REDIRECT_URL = 'app:index'
 
-AUTHENTICATION_BACKENDS = [
-    'social_core.backends.twitter.TwitterOAuth',
-    'django.contrib.auth.backends.ModelBackend',
-]
+# AUTHENTICATION_BACKENDS = [
+#     'social_core.backends.twitter.TwitterOAuth',
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
 
-SOCIAL_AUTH_TWITTER_KEY = twitter.SOCIAL_AUTH_TWITTER_KEY
-SOCIAL_AUTH_TWITTER_SECRET = twitter.SOCIAL_AUTH_TWITTER_SECRET
+# SOCIAL_AUTH_TWITTER_KEY = twitter.SOCIAL_AUTH_TWITTER_KEY
+# SOCIAL_AUTH_TWITTER_SECRET = twitter.SOCIAL_AUTH_TWITTER_SECRET
 
 ASGI_APPLICATION = 'membo.routing.application'
 CHANNEL_LAYERS = {
