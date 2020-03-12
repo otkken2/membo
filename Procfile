@@ -1,1 +1,1 @@
-web: gunicorn membo.wsgi --log-file -
+web: python manage.py collectstatic --noinput ; gunicorn membo.wsgi --log-file -
