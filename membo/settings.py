@@ -26,7 +26,7 @@ SECRET_KEY = 'hz^=fq$sdj01!+2q&b096a28kql8i59)d03$81)iubpndl1p_%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['memboapp.herokuapp.com']
+ALLOWED_HOSTS = ['memboapp.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -130,7 +130,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/membo/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,"static"),
 )
