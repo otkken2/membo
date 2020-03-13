@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import requires_csrf_token
+
 
 from .models import PostContent,get_media_sound_path
 from .forms import *
@@ -110,3 +112,6 @@ def editpost(request,postcontent_id):
         form = PostContentForm(instance=postcontent)
     return render(request, 'app/bosyuu_edit.html',{'form':form,'postcontent':postcontent})
 
+@requires_csrf_token
+def my_customized_server_error(request, template_name='500.html'):
+    return HttpResponseServerError('<h1>Server Error(500)だよーん</h1>')

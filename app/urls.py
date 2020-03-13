@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.decorators.cache import cache_page 
 
+
 app_name = 'app'
 urlpatterns = [
     path('',cache_page(60*5)(views.index),name='index'),
@@ -19,3 +20,4 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
