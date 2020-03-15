@@ -133,11 +133,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+
+# トップページに表示する画像などを保管する任意の場所を、
+# Djangoに探すように指定するのがSTATICFILES_DIRS。
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# web server(NGINX等)やHerokuにデプロイする際には、
+# 静的ファイルの置き場所を複数ではなく、
+# 一つの場所に集めてあげる必要がある。それがcollectstaticコマンド。しかし、
+# collectstaticする前に、集める場所をSTATIC_ROOTとしてsettings.pyに設定する必要がある。
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# デプロイ環境で、{% static 'main.css' %}などのDjangoテンプレートが
+# 読みに行く場所をsettings.pyにSTATIC_URLで指定してあげる。
+STATIC_URL = '/staticfiles/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
