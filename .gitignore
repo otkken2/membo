@@ -4,7 +4,9 @@
 __pycache__
 myvenv
 db.sqlite3
-# /static
+/static
+/staticfiles/css/*
+!style.css
 .DS_Store
 .history
 **twitter.py
