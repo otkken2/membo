@@ -10,4 +10,4 @@ db.sqlite3
 **twitter.py
 media
 local_settings.py
-staticfiles
+# staticfiles
