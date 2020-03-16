@@ -149,8 +149,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # デプロイ環境で、{% static 'main.css' %}などのDjangoテンプレートが
 # 読みに行く場所をsettings.pyにSTATIC_URLで指定してあげる。
-# STATIC_URL = '/staticfiles/'
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
+# STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
