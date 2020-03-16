@@ -5,8 +5,8 @@ __pycache__
 myvenv
 db.sqlite3
 /static
-/staticfiles/css/*
-!/staticfiles/css/style.css
+# /staticfiles/css/*
+# !/staticfiles/css/style.css
 /staticfiles/debug_toolbar
 .DS_Store
 .history
