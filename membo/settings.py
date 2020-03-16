@@ -144,11 +144,13 @@ STATICFILES_DIRS = (
 # 静的ファイルの置き場所を複数ではなく、
 # 一つの場所に集めてあげる必要がある。それがcollectstaticコマンド。しかし、
 # collectstaticする前に、集める場所をSTATIC_ROOTとしてsettings.pyに設定する必要がある。
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # デプロイ環境で、{% static 'main.css' %}などのDjangoテンプレートが
 # 読みに行く場所をsettings.pyにSTATIC_URLで指定してあげる。
-STATIC_URL = '/staticfiles/'
+# STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
