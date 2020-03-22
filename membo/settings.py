@@ -172,22 +172,22 @@ LOGOUT_REDIRECT_URL = 'app:index'
 # SOCIAL_AUTH_TWITTER_SECRET = twitter.SOCIAL_AUTH_TWITTER_SECRET
 
 ASGI_APPLICATION = 'membo.routing.application'
-CHANNEL_LAYERS = {
-    'default':{
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG':{
-            "hosts":[('127.0.0.1',6379)],
-        },
-    },
-}
 # CHANNEL_LAYERS = {
 #     'default':{
-#         'BACKEND': 'asgi_redis.RedisChannelLayer',
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
 #         'CONFIG':{
-#             "hosts":[os.environ.get('REDIS_URL','redis://localhost:6379')],
+#             "hosts":[('127.0.0.1',6379)],
 #         },
 #     },
 # }
+CHANNEL_LAYERS = {
+    'default':{
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG':{
+            "hosts":[os.environ.get('REDIS_URL','redis://localhost:6379')],
+        },
+    },
+}
 # CHANNEL_LAYERS = {
 #     'default':{
 #         'BACKEND': 'channels_redis.core.RedisChannelLayer',
