@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'chat',
     'app',
     'search',
+    'storages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -172,22 +173,7 @@ LOGOUT_REDIRECT_URL = 'app:index'
 # SOCIAL_AUTH_TWITTER_SECRET = twitter.SOCIAL_AUTH_TWITTER_SECRET
 
 ASGI_APPLICATION = 'membo.routing.application'
-# CHANNEL_LAYERS = {
-#     'default':{
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG':{
-#             "hosts":[('127.0.0.1',6379)],
-#         },
-#     },
-# }
-# CHANNEL_LAYERS = {
-#     'default':{
-#         'BACKEND': 'asgi_redis.RedisChannelLayer',
-#         'CONFIG':{
-#             "hosts":[os.environ.get('REDIS_URL','redis://localhost:6379')],
-#         },
-#     },
-# }
+
 CHANNEL_LAYERS = {
     'default':{
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -216,3 +202,16 @@ except ImportError:
 if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
+
+
+AWS_ACCESS_KEY_ID = 'AKIA2ZJJKIIFVJHDCV4O'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'memboapp'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400', 
+}
+
+AWS_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
