@@ -68,7 +68,7 @@ def createpost(request):
             post.post_date = timezone.now()
             post.save()
             form.save_m2m()
-            #追々、ここに「確認画面」へのリダイレクト処理を実装する。とりあえずは、ワンクリックで即、DBへ保存させてしまおう。  
+              
             return redirect('app:bosyuu_detail',post.id)
     else:
         form = PostContentForm()
@@ -77,7 +77,6 @@ def createpost(request):
 def bosyuu_detail(request,postcontent_id):
     postcontent = PostContent.objects.get(id=postcontent_id)
     
-
     name1 = str(request.user)
     name2 = str(postcontent.author)
 
@@ -104,7 +103,8 @@ def bosyuu_delete(request,postcontent_id):
 def editpost(request,postcontent_id):
     postcontent = get_object_or_404(PostContent,id=postcontent_id)
     if request.method == "POST":
-        form = PostContentForm(request.POST,instance=postcontent)
+        # form = PostContentForm(request.POST,instance=postcontent)
+        form = PostContentForm(request.POST, request.FILES, instance=postcontent)
         if form.is_valid():
             form.save()
             return redirect('app:bosyuu_detail',postcontent_id=postcontent_id)
@@ -112,6 +112,3 @@ def editpost(request,postcontent_id):
         form = PostContentForm(instance=postcontent)
     return render(request, 'app/bosyuu_edit.html',{'form':form,'postcontent':postcontent})
 
-@requires_csrf_token
-def my_customized_server_error(request, template_name='500.html'):
-    return HttpResponseServerError('<h1>Server Error(500)だよーん</h1>')
