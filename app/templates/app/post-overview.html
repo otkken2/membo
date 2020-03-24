@@ -4,9 +4,7 @@
         <div class="post-header">
             <div class="post-title">    
                 <a href="{% url 'app:bosyuu_detail'　postcontent_id=postcontent.id %}"> <!--  bosyuu_detailの中身は後に正しい内容に変更する。その際、記事の主キーを渡すようにこのhrefも変更する。-->
-                    <h3>
-                        {{ postcontent.title }}
-                    </h3>
+                    <h3>{{ postcontent.title }}</h3>
                 </a>
             </div>
             <div class="post-meta">
@@ -34,12 +32,20 @@
                             {{ active_area }},
                         {% endfor %}
                     </li>
+                    <li>影響:
+                        {{ postcontent.favorite }}
+                    </li>
                     <li>ジャンル:
                         {% for genre in postcontent.genre.all %}
                             {{ genre }},
                         {% endfor %}
                     </li>
-                    <li>影響:{{ postcontent.favorite }}</li>
+                    <li>
+                        曜日:
+                        {% for days_of_theweek in postcontent.days_of_theweek.all %}
+                        {{ days_of_theweek }}
+                        {% endfor %}
+                    </li>
                 </ul>
             </div>
         </div>

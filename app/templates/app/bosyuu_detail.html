@@ -2,13 +2,20 @@
 {% load static %}
 
 {% block content %}
+    <ol class="breadcrumb"><!-- パンクズリスト -->
+        <li><a href="{% url 'app:index' %}"><small>トップページ</small></a></li>
+        <li><small>記事詳細</small></li>
+    </ol>
+    <h2>記事詳細</h2>
     <section class="post">
 
         <div class="post-header">
             <div class="post-title">    
                 <h3>{{ postcontent.title }}</h3>
             </div>
-            <!-- <div class="post-meta">（男・32歳　{{ postcontent.post_date }}）</div> -->
+            <div class="post-meta">
+                （投稿日時：　{{ postcontent.post_date }}）
+            </div>
         </div>
 
         <div class="post-contents">

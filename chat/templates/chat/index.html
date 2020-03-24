@@ -24,7 +24,11 @@
             {% endfor %}
         {% endfor %}
     {% else %}
-        まだやりとりしている相手はいません。
+        まだやりとりしている相手はいません。<br>
+        気になる記事の投稿者に連絡してみましょう！<br>
+        <a href="{% url 'search:bosyuu_article' %}">記事をさがす</a>
+        
+        
     {% endif %}
 
     <script>
