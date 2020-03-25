@@ -517,6 +517,7 @@ input:checked{/* できればクリックされたチェックボックスを白
     .main-container{
         flex-direction: column;
         align-items: center;
+        margin: 0;
     }
 
     .header-menus{
@@ -547,5 +548,13 @@ input:checked{/* できればクリックされたチェックボックスを白
     }
     .searchword-input{
         width: 100%;
+    }
+
+    #text-output-area{
+        width: 100%;
+    }
+
+    .post{
+        width: 99%;
     }
 }
