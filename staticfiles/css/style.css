@@ -162,7 +162,6 @@ ul{
     /* background-color: forestgreen; */
     width: calc(100% - 280px);
     text-align: left;/* メインコンテンツの内側の文章は、多分ほとんど左寄せ */  
-    margin-right: 15px;
 }
 
 .post{
@@ -518,7 +517,7 @@ input:checked{/* できればクリックされたチェックボックスを白
         flex-direction: column;
         align-items: center;
         margin: 90px 0 0 0;
-        
+        width:97%
     }
 
     .header-menus{
@@ -555,7 +554,5 @@ input:checked{/* できればクリックされたチェックボックスを白
         width: 100%;
     }
 
-    .post{
-        width: 99%;
-    }
+    
 }
