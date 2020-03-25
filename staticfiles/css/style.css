@@ -556,5 +556,10 @@ input:checked{/* できればクリックされたチェックボックスを白
         width: 100%;
     }
 
+    .post-form-title,.post-form-favorite{
+        width: 80%;
+        align-self: center;
+    }
+
     
 }
