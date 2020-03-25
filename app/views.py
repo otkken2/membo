@@ -43,6 +43,8 @@ def index(request):
     return render(request, 'app/index.html', {'postcontents':postcontents})
 
 
+def about(request):
+    return render(request, 'app/about.html',{})
 
 
 

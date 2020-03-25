@@ -26,7 +26,12 @@
                         <img class="hamburger" src="{% static 'images/hamburger.png' %}" alt="menuを表示" srcset="">
                     <!-- </div> -->
                     <nav class="header-menus">
-                        <a href="{% url 'search:bosyuu_article' %}" class="header-menu-list-text">さがす</a>
+                        <a href="{% url 'app:about' %}" class="header-menu-list-text">
+                            このサイトについて
+                        </a>
+                        <a href="{% url 'search:bosyuu_article' %}" class="header-menu-list-text">
+                            さがす
+                        </a>
                         {% if request.user.is_authenticated %}
                         <a href="{% url 'chat:index' %}" class="header-menu-list-text">
                             チャット
@@ -34,7 +39,7 @@
                         <a href="{% url 'app:mypage' %}" class="header-menu-list-text">
                             マイページ
                         </a>
-                        <a href="{% url 'app:logout' %}"class="header-menu-list-text">
+                        <a href="{% url 'app:logout' %}" class="header-menu-list-text">
                             ログアウト
                         </a>
                         {% else %}

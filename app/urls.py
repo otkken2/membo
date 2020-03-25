@@ -9,6 +9,7 @@ app_name = 'app'
 urlpatterns = [
     path('',views.index,name='index'),
     path('mypage',views.mypage, name='mypage'),
+    path('about',views.about,name='about'),
     path('createpost/',views.createpost, name='createpost'),
     path('bosyuu_detail<int:postcontent_id>/editpost/',views.editpost,name='bosyuu_edit'),
     path('bosyuu_detail<int:postcontent_id>/',views.bosyuu_detail, name='bosyuu_detail'),
