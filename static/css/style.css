@@ -517,7 +517,7 @@ input:checked{/* できればクリックされたチェックボックスを白
     .main-container{
         flex-direction: column;
         align-items: center;
-        margin: 0;
+        margin: 90px 0 0 0;
         
     }
 
