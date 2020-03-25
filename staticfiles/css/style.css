@@ -483,7 +483,7 @@ input:checked{/* できればクリックされたチェックボックスを白
 }
 
 .balloon-metainfo{
-    background-colossr: tomato;
+    background-color: tomato;
     text-align: center;
 }
 
