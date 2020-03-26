@@ -518,7 +518,7 @@ input:checked{/* できればクリックされたチェックボックスを白
     margin:0;
 }
 
-@media screen and (max-width:740px){
+@media screen and (max-width:770px){
     .main-container{
         flex-direction: column;
         align-items: center;
