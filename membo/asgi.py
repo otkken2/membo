@@ -16,3 +16,4 @@ django.setup()
 application = get_default_application()
 # channel_layer = channels.asgi.get_channel_layer()
 # channel_layer = get_channel_layer()
+os.environ['ASGI_THREADS']="4"
