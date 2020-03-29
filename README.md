@@ -39,6 +39,8 @@ Mac OS X 64-bit/32-bit installer というファイルをダウンロード。
  (myvenv)$ django-admin startproject membo  
  
  
+ まだ作り途中です〜。
+ 
 
 
 # Usage
