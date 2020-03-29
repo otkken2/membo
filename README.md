@@ -35,7 +35,7 @@ Mac OS X 64-bit/32-bit installer というファイルをダウンロード。
  そしてDjangoをインストール。  
  (myvenv)$ pip install Django==2.2.9  
  
- ###プロジェクトの作成
+ ### プロジェクトの作成  
  (myvenv)$ django-admin startproject membo  
  
  
