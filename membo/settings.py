@@ -204,7 +204,7 @@ except ImportError:
 if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
-    del DATABASES['default']['OPTIONS']['sslmode']
+    # del DATABASES['default']['OPTIONS']['sslmode']
 
 AWS_ACCESS_KEY_ID = 'AKIA2ZJJKIIFUGNVZM5C'
 AWS_SECRET_ACCESS_KEY = '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'
