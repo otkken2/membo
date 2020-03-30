@@ -39,12 +39,29 @@ Mac OS X 64-bit/32-bit installer というファイルをダウンロード。
  (myvenv)$ django-admin startproject membo  
  
  
- まだ作り途中です〜。
+ ### memboディレクトリにgit clone する
  
+ ### データベースを作成する(カレントディレクトリは,manage.pyファイルの存在するmemboディレクトリで）　　
+ (myvenv)$ python manage.py migrate  
+ 
+ ### webサーバーを起動  
+ 
+ (myvenv)$ python manage.py runserver   
 
+
+### ブラウザで見れるかな？　　
+http://127.0.0.1:8000/  
+
+### 管理画面の設定
+　ブラウザで、 http://127.0.0.1:8000/admin/ にアクセス。　問題なければ、管理画面へのログイン画面が表示されるはず。
+ ターミナルで、次のコマンドを実行。  
+ (myvenv)$ python manage.py createsuperuser  
+ プロンプトが表示されたら、ユーザー名 (小文字、スペースなし)、電子メール アドレス、およびパスワードを入力　　
+ 
+ ブラウザに戻ってsuperuserでログイン
 
 # Usage
-使い方。なるべく具体的に書く。サンプルも書く
+ ### 
 
 
 # Authors
