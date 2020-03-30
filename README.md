@@ -40,6 +40,8 @@ Mac OS X 64-bit/32-bit installer というファイルをダウンロード。
  
  
  ### memboディレクトリにgit clone する
+ エディタで開いたときこんな感じだったら多分大丈夫。(db.sqlite3はこれから作成。staticfilesはherokuにデプロイする用のディレクトリなので気にしない)  
+ <img width="258" alt="スクリーンショット 2020-03-30 12 10 10" src="https://user-images.githubusercontent.com/46080385/77875142-292ba180-728a-11ea-97ed-a16382a55f83.png">
  
  ### データベースを作成する(カレントディレクトリは,manage.pyファイルの存在するmemboディレクトリで）　　
  ```(myvenv)$ python manage.py migrate```  
