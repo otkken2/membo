@@ -1,5 +1,6 @@
 # membo
-バンドメンバー募集サイト
+バンドメンバー募集サイト(習作)
+＊注：AWSのセキュリティ上の都合からsettings.pyはpushしておりません。
 
 # Dependency
 Python==3.6.1  
